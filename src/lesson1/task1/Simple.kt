@@ -37,7 +37,7 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
 }
 
 /**
- * Пример главной функции
+ * Пример главной функции  
  */
 fun main(args: Array<String>) {
     // Решаем x^2 - 3*x + 2 = 0
