@@ -109,10 +109,10 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val t = 1.0 + 0.01 * percent
-    val z = 3.0
-    val s = pow(t, z) * initial
-    return s
+    val a = 1.0 + 0.01 * percent
+    val b = 3.0
+    val sum = pow(a, b) * initial
+    return sum
 }
 
 
@@ -123,4 +123,4 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  *Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int =
-        ((number % 10 * 100) + (number / 10  % 10) * 10 + (number / 100))
+        (number % 10 * 100) + (number / 10 % 10) * 10 + (number / 100)
