@@ -2,9 +2,6 @@
 
 package lesson3.task1
 
-import com.sun.xml.internal.bind.v2.TODO
-import java.util.function.ToDoubleBiFunction
-
 /**
  * Пример
  *
@@ -131,17 +128,9 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean {
-    var c = 0
-    if (m > n) c = n else c = m
-    if (c != 1) {
-        for (i in 2..c)
-            if ((n % i == 0) && (m % i == 0)) {
-                c = 1;break
-            }
-    } else c = 0
-    return c != 1
-}
+fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+
+
 
 /**
  * Простая
@@ -152,7 +141,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
 
-//}
+
 
 /**
  * Средняя
@@ -171,7 +160,7 @@ fun sin(x: Double, eps: Double): Double = TODO()
  * cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun cos(x: Double, eps: Double): Double = TODO()
+fun cos(x: Double, eps: Double): Double =TODO()
 
 /**
  * Средняя
@@ -204,7 +193,7 @@ fun isPalindrome(n: Int): Boolean = n == revert(n)
  * Для заданного числа n определить, содержит ли оно различающиеся цифры.
  * Например, 54 и 323 состоят из разных цифр, а 111 и 0 из одинаковых.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean =TODO()
 
 /**
  * Сложная
@@ -223,4 +212,4 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  * 1123581321345589144...
  * Например, 2-я цифра равна 1, 9-я 2, 14-я 5.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int =TODO()

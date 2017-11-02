@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -43,8 +44,6 @@ fun ageDescription(age: Int): String {
 }
 
 
-
-
 /**
  * Простая
  *
@@ -78,10 +77,14 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
+    val a = (kingX == rookX1)
+    val b = (kingX == rookX2)
+    val c = (kingY == rookY1)
+    val d = (kingY == rookY2)
     return when {
-        (kingX == rookX1) && (kingX == rookX2) || (kingX == rookX1) && (kingY == rookY2) || (kingY == rookY1) && (kingX == rookX2) || (kingY == rookY1) && (kingY == rookY2) -> 3
-        (kingX == rookX2) || (kingY == rookY2) -> 2
-        (kingX == rookX2) || (kingY == rookY1) -> 1
+        a && b || a && d || c && b || c && d -> 3
+        b || d -> 2
+        b || c -> 1
         else -> 0
     }
 
@@ -101,13 +104,14 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int): Int {
+    val a = (kingY == rookY || kingX == rookX)
+    val b = Math.abs(kingX - bishopX)
+    val c = Math.abs(kingY - bishopY)
+    val d = (kingY != rookY && kingX != rookX)
     return when {
-        ((kingY == rookY || kingX == rookX) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY)))
-        -> 3
-        ((kingY != rookY && kingX != rookX) && (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY)))
-        -> 2
-        ((kingY == rookY || kingX == rookX) && (Math.abs(kingX - bishopX) != Math.abs(kingY - bishopY)))
-        -> 1
+        a && b == c -> 3
+        d && b == c -> 2
+        a && b != c -> 1
         else -> 0
 
     }
@@ -123,6 +127,7 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
+
     return when {
         (a + b < c) || (b + c < a) || (a + c < b) -> -1
         (a * a == b * b + c * c) || (b * b == a * a + c * c) || (c * c == b * b + a * a) -> 1
