@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_PARAMETER")
+    @file:Suppress("UNUSED_PARAMETER")
 package lesson4.task1
 
 import lesson1.task1.discriminant
@@ -106,14 +106,22 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double =
+        when {
+            v.isEmpty() -> 0.0
+            else -> Math.sqrt(v.map { it * it }.sum())
+        }
 
 /**
  * Простая
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+return if(list.isEmpty()) 0.0
+    else list.sum() / list.size
+
+}
 
 /**
  * Средняя
@@ -123,7 +131,13 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val a = list.sum() / list.size
+    for ((i, e) in list.withIndex()) {
+        list[i] = e - a
+    }
+    return list
+}
 
 /**
  * Средняя
@@ -132,7 +146,13 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
-fun times(a: List<Double>, b: List<Double>): Double = TODO()
+fun times(a: List<Double>, b: List<Double>): Double {
+    var n = 0.0
+    for (i in 0 until a.size) {
+        n += (a[i] * b[i])
+    }
+    return n
+}
 
 /**
  * Средняя

@@ -89,9 +89,11 @@ fun fib(n: Int): Int = (Math.pow(((Math.sqrt(5.0) + 1) / 2), n / 1.0) / Math.sqr
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var k = Math.max(m, n)
-    while (k % m != 0 || k % n != 0) {
-        k++
+    var k = 1
+    for (i in m * n downTo 1) {
+        if ((k % m) != 0 || ((k % n) != 0)) {
+            k = k + 1
+        } else break
     }
     return k
 }
