@@ -1,7 +1,7 @@
-    @file:Suppress("UNUSED_PARAMETER")
+@file:Suppress("UNUSED_PARAMETER")
+
 package lesson4.task1
 
-import jdk.nashorn.internal.runtime.JSType.toDouble
 import lesson1.task1.discriminant
 
 /**
@@ -119,7 +119,7 @@ fun abs(v: List<Double>): Double =
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-return if(list.isEmpty()) 0.0
+    return if (list.isEmpty()) 0.0
     else list.sum() / list.size
 
 }
@@ -228,15 +228,13 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
 fun convert(n: Int, base: Int): List<Int> {
-    var number = n
-    var list: List<Int>
-    list = listOf()
-    if (n == 0) list += 0
-    while (number > 0) {
-        list += number % base
-        number /= base
+    var a = n
+    val number = mutableListOf<Int>()
+    while (a > 0) {
+        number.add(0, a % base)
+        a /= base
     }
-    return list.reversed()
+    return number
 }
 
 /**
@@ -247,9 +245,15 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-fun convertToString(n: Int, base: Int): String = TODO()
-
-
+fun convertToString(n: Int, base: Int): String {
+    val list = convert(n, base)
+    var a = ""
+    for (i in list) {
+        a += if (i > 9) 'a' + (i - 10)
+        else i
+    }
+    return a
+}
 
 /**
  * Средняя
@@ -258,7 +262,12 @@ fun convertToString(n: Int, base: Int): String = TODO()
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
-fun decimal(digits: List<Int>, base: Int): Int = TODO()
+fun decimal(digits: List<Int>, base: Int): Int {
+    var result = 0
+    for (i in (digits.size - 1) downTo 0)
+        result += (digits[i] * Math.pow(base.toDouble(), ((digits.size - 1) - i).toDouble())).toInt()
+    return result
+}
 
 /**
  * Сложная
@@ -269,7 +278,15 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: str = "13c", base = 14 -> 250
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
+fun decimalFromString(str: String, base: Int): Int {
+    val list = mutableListOf<Int>()
+    for (i in 0 until str.length) {
+        if (str[i] - 'a' in 0..25) list.add(str[i] - 'a' + 10)
+        else list.add(str[i].toString().toInt())
+    }
+    return decimal(list, base)
+}
+
 
 /**
  * Сложная
