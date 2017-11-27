@@ -89,7 +89,22 @@ fun dateDigitToStr(digital: String): String = TODO()
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String {
+    if (phone == "+")
+        return ""
+    val whiteList = "+1234567890 -()"
+    val number = mutableListOf<Char>()
+    var plusSum = 0
+    for (char in phone) {
+        if (char !in whiteList)
+            return ""
+        if (char == '+') plusSum++
+        if (whiteList.indexOf(char) in 0..10) number.add(char)
+    }
+    if (number.isEmpty() || number[0] != '+' && plusSum == 1 || plusSum > 1)
+        return ""
+    return number.joinToString("")
+}
 
 /**
  * Средняя
@@ -101,7 +116,19 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+        val a = jumps.split(" ", "%", "-").toMutableList()
+        a.removeAll { it == "" }
+        var max = -1
+        try {
+                for (i in a) {
+                        if (i.toInt() > max) max = i.toInt()
+                    }
+            } catch (e: NumberFormatException) {
+                return -1
+            }
+        return max
+    }
 
 /**
  * Сложная
@@ -113,7 +140,15 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int  {
+    val parts = jumps.split(" ")
+    var max = -1
+    for (part in 1..parts.size - 1 step 2) {
+        val maxOfParts = parts[part - 1].toInt()
+        if ('+' in parts[part] && max < maxOfParts) max = maxOfParts
+    }
+    return max
+}
 
 /**
  * Сложная
