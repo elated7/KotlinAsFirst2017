@@ -89,13 +89,13 @@ fun fib(n: Int): Int = (Math.pow(((Math.sqrt(5.0) + 1) / 2), n / 1.0) / Math.sqr
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var k = 1
-    for (i in m * n downTo 1) {
-        if ((k % m) != 0 || ((k % n) != 0)) {
-            k = k + 1
-        } else break
-    }
+    var k = Math.max(m,n)
+    while (k%m !=0 || k%n !=0){
+            k ++
+        }
+
     return k
+
 }
 
 /**
@@ -148,11 +148,10 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x: Int = Math.sqrt(m.toDouble()).toInt()
+    var x = Math.sqrt(m.toDouble()).toInt()
     if (x * x < m) x++
     return x <= Math.sqrt(n.toDouble())
 }
-
 
 /**
  * Средняя
@@ -161,18 +160,8 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  * sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun sin(x: Double, eps: Double): Double {
+fun sin(x: Double, eps: Double): Double = TODO()
 
-    var a = x
-    var b = 1
-    var sin = x % (2 * Math.PI)
-    while (Math.abs(a) >= eps) {
-        a = -a * (x % (2 * Math.PI)) / ((b * 2 + 1) * (b * 2)).toDouble() * (x % (2 * Math.PI))
-        b += 1
-        sin += a
-    }
-    return sin
-}
 
 
 /**
