@@ -89,13 +89,11 @@ fun fib(n: Int): Int = (Math.pow(((Math.sqrt(5.0) + 1) / 2), n / 1.0) / Math.sqr
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var k = Math.max(m,n)
-    while (k%m !=0 || k%n !=0){
-            k ++
-        }
-
+    var k = Math.max(m, n)
+    while (k % m != 0 || k % n != 0) {
+        k++
+    }
     return k
-
 }
 
 /**
@@ -163,7 +161,6 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
 fun sin(x: Double, eps: Double): Double = TODO()
 
 
-
 /**
  * Средняя
  *
@@ -176,8 +173,9 @@ fun cos(x: Double, eps: Double): Double {
     var a = 1.0
     var b = 1
     var cos = 1.0
+    val z = (2 * Math.PI)
     while (Math.abs(a) >= eps) {
-        a = -a * (x % (2 * Math.PI)) / ((b * 2 - 1) * (b * 2)).toDouble() * (x % (2 * Math.PI))
+        a = -a * (x % z) / (((b * 2) - 1) * (b * 2)).toDouble() * (x % z)
         b += 1
         cos += a
     }

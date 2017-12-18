@@ -122,11 +122,13 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    if ((a + b > c) && (a + c > b) && (c + b > a)) {
-        if ((a * a + b * b < c * c) || (a * a + c * c < b * b) || (b * b + c * c < a * a)) return 2
-        else if ((a * a + b * b == c * c) || (a * a + c * c == b * b) || (b * b + c * c == a * a)) return 1
-        else return 0
-    } else return -1
+    fun sqr(x: Double) = x * x
+    return when {
+        ((a > b + c) || (b > a + c) || (c > a + b)) -> -1
+        ((sqr(a) == sqr(b) + sqr(c)) || (sqr(b) == sqr(a) + sqr(c)) || (sqr(c) == sqr(b) + sqr(a))) -> 1
+        ((sqr(a) > sqr(b) + sqr(c)) || (sqr(b) > sqr(a) + sqr(c)) || (sqr(c) > sqr(b) + sqr(a))) -> 2
+        else -> 0
+    }
 }
 
 /**

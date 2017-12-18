@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson5.task1
 
 /**
@@ -48,12 +49,10 @@ fun main(args: Array<String>) {
         val seconds = timeStrToSeconds(line)
         if (seconds == -1) {
             println("Введённая строка $line не соответствует формату ЧЧ:ММ:СС")
-        }
-        else {
+        } else {
             println("Прошло секунд с начала суток: $seconds")
         }
-    }
-    else {
+    } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
 }
@@ -117,18 +116,18 @@ fun flattenPhoneNumber(phone: String): String {
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
 fun bestLongJump(jumps: String): Int {
-        val a = jumps.split(" ", "%", "-").toMutableList()
-        a.removeAll { it == "" }
-        var max = -1
-        try {
-                for (i in a) {
-                        if (i.toInt() > max) max = i.toInt()
-                    }
-            } catch (e: NumberFormatException) {
-                return -1
-            }
-        return max
+    val a = jumps.split(" ", "%", "-").toMutableList()
+    a.removeAll { it == "" }
+    var max = -1
+    try {
+        for (i in a) {
+            if (i.toInt() > max) max = i.toInt()
+        }
+    } catch (e: NumberFormatException) {
+        return -1
     }
+    return max
+}
 
 /**
  * Сложная
@@ -140,7 +139,7 @@ fun bestLongJump(jumps: String): Int {
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int  {
+fun bestHighJump(jumps: String): Int {
     val parts = jumps.split(" ")
     var max = -1
     for (part in 1..parts.size - 1 step 2) {
