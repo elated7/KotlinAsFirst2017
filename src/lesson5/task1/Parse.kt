@@ -195,7 +195,28 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+fun fromRoman(roman: String): Int {
+    val mapRomanArab =
+            mapOf("M" to 1000, "CM" to 900, "D" to 500, "CD" to 400, "C" to 100, "XC" to 90,
+                    "L" to 50, "XL" to 40, "X" to 10, "IX" to 9, "V" to 5, "IV" to 4, "I" to 1)
+    var result = 0
+    var i = 0
+    while (i < roman.length) {
+        val romanNum = if (i + 1 < roman.length) {
+            roman.substring(i, i + 2)
+        } else roman[i].toString()
+        when {
+            mapRomanArab.containsKey(romanNum) -> {
+                result += mapRomanArab[romanNum]!!
+                i++
+            }
+            mapRomanArab.containsKey(romanNum[0].toString()) -> result += mapRomanArab[romanNum[0].toString()]!!
+            else -> return -1
+        }
+        i++
+    }
+    return if (result != 0) result else -1
+}
 
 /**
  * Очень сложная
