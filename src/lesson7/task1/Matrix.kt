@@ -72,8 +72,7 @@ class MatrixImpl<E>(override val height: Int, override val width: Int) : Matrix<
             height == other.height &&
             width == other.width &&
             list == other.list
-
-
+    
     override fun toString(): String {
         val sb = StringBuilder()
         sb.append('[')
