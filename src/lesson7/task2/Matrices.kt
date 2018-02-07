@@ -98,7 +98,6 @@ fun generateRectangles(height: Int, width: Int): Matrix<Int> {
     } while (completedCircles < circles)
     return result
 }
-
 /**
  * Сложная
  *
